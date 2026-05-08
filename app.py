@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import google.generativeai as genai
 
-# ── PAGE CONFIG ───────────────────────────────────────────────
+#PAGE CONFIG
 st.set_page_config(
     page_title="AgroPredict AI",
     page_icon="🌾",
@@ -10,23 +10,23 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ── LOAD CSS ──────────────────────────────────────────────────
+#LOAD CSS
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 local_css("style.css")
 
-# ── SESSION STATE ─────────────────────────────────────────────
+#SESSION STATE
 if "crop" not in st.session_state:
     st.session_state.crop = None
 
-# ── GEMINI SETUP ──────────────────────────────────────────────
+#GEMINI SETUP
 GEMINI_API_KEY = "AIzaSyAQ68o_efsIqSJUW-muqjHYDTLS6e4BLsA"
 genai.configure(api_key=GEMINI_API_KEY)
 gemini = genai.GenerativeModel(model_name="gemini-3.1-flash-lite")
 
-# ── HERO ──────────────────────────────────────────────────────
+#HERO
 st.markdown("""
 <div class="hero-wrap">
     <div class="hero-badge">🌾 AI-Powered Crop Intelligence</div>
@@ -48,10 +48,10 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── MAIN LAYOUT ───────────────────────────────────────────────
+#MAIN LAYOUT
 left, right = st.columns([1.4, 1], gap="large")
 
-# ── LEFT: SOIL INPUTS ─────────────────────────────────────────
+#LEFT: SOIL INPUTS
 with left:
 
     st.markdown("""
@@ -150,7 +150,7 @@ with left:
 
     predict_btn = st.button("🌾 Analyse & Recommend Crop")
 
-# ── RIGHT: INFO PANEL ─────────────────────────────────────────
+#RIGHT: INFO PANEL
 with right:
 
     st.markdown("""
@@ -185,7 +185,7 @@ with right:
     </div>
     """, unsafe_allow_html=True)
 
-# ── PREDICTION API CALL ───────────────────────────────────────
+#PREDICTION API CALL
 if predict_btn:
     payload = {"n": n, "p": p, "k": k, "temp": temp, "humidity": humidity, "ph": ph, "rainfall": rainfall}
     try:
@@ -217,7 +217,7 @@ if predict_btn:
     except requests.exceptions.Timeout:
         st.error("⏱ The server took too long to respond. Please try again.")
 
-# ── CHATBOT SECTION ───────────────────────────────────────────
+#CHATBOT
 st.markdown("""
 <div class="chat-section-header">
     <div class="chat-badge">🌿 Powered by Gemini AI</div>
@@ -226,7 +226,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Suggestion pills
+#Suggestion pills
 st.markdown("""
 <div class="suggestion-row">
     <span class="suggestion-pill">💧 Best irrigation schedule?</span>
@@ -237,7 +237,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Show active crop context if available
+#Crop context
 if st.session_state.crop:
     st.markdown(f"""
     <div class="context-pill">
@@ -254,7 +254,7 @@ else:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Input + Ask button
+#Input + Ask button
 st.markdown('<div class="chat-input-wrap"><div class="chat-input-label">✍️ Your Question</div>', unsafe_allow_html=True)
 user_question = st.text_input(
     "Ask about fertilizers, irrigation, diseases, etc.",
@@ -305,7 +305,7 @@ if ask_btn:
     else:
         st.warning("🌱 Please type a question before asking the assistant.")
 
-# ── FOOTER ────────────────────────────────────────────────────
+#  FOOTER 
 st.markdown("""
 <div class="footer">
     <div class="footer-brand">🌿 AgroPredict AI</div>
