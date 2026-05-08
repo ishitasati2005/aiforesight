@@ -1,0 +1,27 @@
+from fastapi import FastAPI
+import joblib
+import numpy as np
+
+app = FastAPI()
+
+model = joblib.load("model.pkl")
+
+@app.post("/predict")
+@app.get("/")
+def home():
+       return {"message": "Backend is running"}
+def predict(data: dict):
+
+    values = np.array([[
+        data["n"],
+        data["p"],
+        data["k"],
+        data["temp"],
+        data["humidity"],
+        data["ph"],
+        data["rainfall"]
+    ]])
+
+    prediction = model.predict(values)
+
+    return {"prediction": prediction[0]}
