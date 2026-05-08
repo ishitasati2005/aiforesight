@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 #PAGE CONFIG
 st.set_page_config(
@@ -22,7 +25,7 @@ if "crop" not in st.session_state:
     st.session_state.crop = None
 
 #GEMINI SETUP
-GEMINI_API_KEY = "AIzaSyAQ68o_efsIqSJUW-muqjHYDTLS6e4BLsA"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 gemini = genai.GenerativeModel(model_name="gemini-3.1-flash-lite")
 
