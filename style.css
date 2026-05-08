@@ -1,0 +1,664 @@
+/* ============================================================
+   AgroPredict AI — Earthy Design System
+   style.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS VARIABLES ────────────────────────────────────────── */
+:root {
+    --soil-dark:   #2C1A0E;
+    --soil-mid:    #5C3D1E;
+    --bark:        #7A4F2D;
+    --clay:        #B07848;
+    --straw:       #D4A85A;
+    --wheat:       #E8C97A;
+    --leaf-dark:   #2A4A2A;
+    --leaf:        #3E6B3E;
+    --moss:        #5A7A3A;
+    --sage:        #8FAF6A;
+    --mist:        #C8DCA8;
+    --parchment:   #eaba42;
+    --cream:       #ece6a9;
+}
+
+/* ── RESET ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, [class*="css"] {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--soil-dark);
+}
+
+/* ── BACKGROUND ───────────────────────────────────────────── */
+.stApp {
+    background-color: var(--cream);
+    background-image:
+        radial-gradient(ellipse at 10% 20%, rgba(90,122,58,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(176,120,72,0.12) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero-wrap {
+    position: relative;
+    text-align: center;
+    padding: 56px 20px 36px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.hero-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(62,107,62,0.13) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--leaf-dark);
+    color: var(--mist);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-weight: 900;
+    color: var(--soil-dark);
+    line-height: 1.05;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+}
+
+.hero-title span { color: var(--leaf); }
+
+.hero-sub {
+    font-size: 1.05rem;
+    color: var(--bark);
+    font-weight: 400;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+}
+
+/* ── VINE DIVIDER ─────────────────────────────────────────── */
+.vine-divider {
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 8px 0 28px;
+    color: var(--sage);
+    letter-spacing: 0.3em;
+}
+
+/* ── STAT CHIPS ───────────────────────────────────────────── */
+.stat-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+}
+
+.stat-chip {
+    background: white;
+    border: 1.5px solid rgba(90,122,58,0.2);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--leaf-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 2px 8px rgba(44,26,14,0.06);
+}
+
+/* ── SECTION LABELS ───────────────────────────────────────── */
+.section-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 6px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--soil-dark);
+    margin-bottom: 20px;
+}
+
+/* ── CARDS ────────────────────────────────────────────────── */
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 28px 26px;
+    border: 1.5px solid rgba(212,168,90,0.2);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 8px 24px rgba(44,26,14,0.07);
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--leaf-dark), var(--moss), var(--straw));
+    border-radius: 24px 24px 0 0;
+}
+
+/* ── NPK BLOCKS ───────────────────────────────────────────── */
+.npk-grid {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.npk-block {
+    flex: 1;
+    background: linear-gradient(135deg, var(--parchment), var(--cream));
+    border: 1.5px solid rgba(176,120,72,0.2);
+    border-radius: 16px;
+    padding: 16px 12px;
+    text-align: center;
+}
+
+.npk-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.npk-letter.n { color: var(--leaf-dark); }
+.npk-letter.p { color: var(--bark); }
+.npk-letter.k { color: var(--clay); }
+
+.npk-name {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bark);
+}
+
+/* ── SLIDER LABELS ────────────────────────────────────────── */
+.slider-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--soil-mid);
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+}
+
+/* ── SOIL HEALTH METERS ───────────────────────────────────── */
+.soil-meter-wrap {
+    background: rgb(238, 240, 215);
+    border-radius: 20px;
+    padding: 22px 24px;
+    border: 1.5px solid rgba(212,168,90,0.2);
+    box-shadow: 0 4px 16px rgba(44,26,14,0.06);
+    margin-bottom: 18px;
+}
+
+.meter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--soil-dark);
+    margin-bottom: 14px;
+}
+
+.meter-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.meter-icon { font-size: 1rem; width: 20px; text-align: center; }
+
+.meter-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--bark);
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.meter-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: var(--parchment);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.meter-bar-fill {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 0.8s ease;
+}
+
+.meter-val {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--soil-mid);
+    width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* ── ABOUT CARD (dark) ────────────────────────────────────── */
+.about-card {
+    background: linear-gradient(160deg, var(--leaf-dark) 0%, #1a3a1a 100%);
+    border-radius: 24px;
+    padding: 32px 28px;
+    color: var(--mist);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(143,175,106,0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.about-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: -30px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(212,168,90,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--wheat);
+    margin-bottom: 16px;
+}
+
+.about-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    color: var(--mist);
+    line-height: 1.55;
+}
+
+.about-icon { font-size: 1rem; margin-top: 1px; flex-shrink: 0; }
+
+/* ── ALMANAC TIP BOX ──────────────────────────────────────── */
+.almanac-box {
+    background: linear-gradient(135deg, var(--parchment), var(--cream));
+    border: 1.5px solid rgba(176,120,72,0.25);
+    border-radius: 18px;
+    padding: 20px 22px;
+    margin-top: 16px;
+}
+
+.almanac-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--soil-dark);
+    margin-bottom: 10px;
+}
+
+.almanac-body {
+    font-size: 0.84rem;
+    color: var(--soil-mid);
+    line-height: 1.65;
+}
+
+/* ── PREDICTION RESULT ────────────────────────────────────── */
+.result-wrap {
+    margin-top: 28px;
+    animation: riseUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes riseUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.result-card {
+    background: linear-gradient(140deg, var(--leaf-dark) 0%, var(--moss) 100%);
+    border-radius: 24px;
+    padding: 36px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(42,74,42,0.3);
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(232,201,122,0.15) 0%, transparent 65%);
+}
+
+.result-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 12px;
+}
+
+.result-crop {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--wheat);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+
+.result-tip {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 0.84rem;
+    color: var(--mist);
+    text-align: left;
+}
+
+/* ── CHATBOT SECTION ──────────────────────────────────────── */
+.chat-section-header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 16px;
+}
+
+.chat-section-header::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--straw), var(--moss), var(--straw), transparent);
+    margin-bottom: 32px;
+    border-radius: 2px;
+}
+
+.chat-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--bark), var(--clay));
+    color: var(--cream);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 50px;
+    margin-bottom: 14px;
+}
+
+.chat-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 900;
+    color: var(--soil-dark);
+    margin-bottom: 8px;
+}
+
+.chat-heading span { color: var(--leaf); }
+
+.chat-subheading {
+    font-size: 0.92rem;
+    color: var(--bark);
+    margin-bottom: 0;
+}
+
+/* Chat input wrapper */
+.chat-input-wrap {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 24px 16px;
+    border: 1.5px solid rgba(212,168,90,0.22);
+    box-shadow: 0 4px 20px rgba(44,26,14,0.07);
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-input-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--bark), var(--clay), var(--straw));
+    border-radius: 20px 20px 0 0;
+}
+
+.chat-input-label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 8px;
+}
+
+/* Suggestion pills */
+.suggestion-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.suggestion-pill {
+    background: var(--parchment);
+    border: 1px solid rgba(176,120,72,0.3);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--soil-mid);
+    cursor: default;
+}
+
+/* Context pill (shows active crop) */
+.context-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(42,74,42,0.08);
+    border: 1.5px solid rgba(62,107,62,0.25);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--leaf-dark);
+    margin-bottom: 10px;
+}
+
+.context-dot {
+    width: 7px; height: 7px;
+    background: var(--moss);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* AI response card */
+.ai-response-card {
+    background: linear-gradient(150deg, #1e3a1e 0%, #2a4a1a 60%, #3a3010 100%);
+    border-radius: 20px;
+    padding: 28px 26px;
+    position: relative;
+    overflow: hidden;
+    animation: riseUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+    margin-top: 8px;
+}
+
+.ai-response-card::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(143,175,106,0.14) 0%, transparent 70%);
+}
+
+.ai-response-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: -30px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(212,168,90,0.1) 0%, transparent 70%);
+}
+
+.ai-response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.ai-avatar {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--moss), var(--sage));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.ai-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--wheat);
+}
+
+.ai-role {
+    font-size: 0.72rem;
+    color: var(--sage);
+    letter-spacing: 0.06em;
+}
+
+.ai-body {
+    font-size: 0.9rem;
+    color: var(--mist);
+    line-height: 1.75;
+    position: relative;
+    z-index: 1;
+}
+
+.ai-body strong { color: var(--wheat); }
+.ai-body em { color: var(--sage); font-style: italic; }
+
+.ai-footer-note {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.73rem;
+    color: rgba(200,220,168,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* No crop warning */
+.no-crop-note {
+    background: linear-gradient(135deg, var(--parchment), #fdf4e0);
+    border: 1.5px solid rgba(176,120,72,0.3);
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 0.82rem;
+    color: var(--soil-mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────── */
+.stButton > button {
+    width: 100% !important;
+    height: 3.6em !important;
+    border: none !important;
+    border-radius: 16px !important;
+    background: linear-gradient(135deg, var(--leaf-dark) 0%, var(--moss) 60%, var(--sage) 100%) !important;
+    color: var(--cream) !important;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 6px 20px rgba(42,74,42,0.28) !important;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 28px rgba(42,74,42,0.38) !important;
+}
+
+.stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.footer {
+    text-align: center;
+    padding: 32px 0 20px;
+    font-size: 0.8rem;
+    color: var(--clay);
+    border-top: 1px solid rgba(176,120,72,0.15);
+    margin-top: 20px;
+}
+
+.footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--leaf);
+    margin-bottom: 4px;
+}
+
+/* ── STREAMLIT OVERRIDES ──────────────────────────────────── */
+div[data-testid="stNumberInput"] input,
+div[data-testid="stTextInput"] input {
+    border-radius: 12px !important;
+    border-color: rgba(176,120,72,0.25) !important;
+    background: var(--parchment) !important;
+}
+
+div[data-testid="stSlider"] > div > div > div {
+    background: var(--leaf) !important;
+}
+
+.stSpinner > div { border-top-color: var(--leaf) !important; }
+div[data-baseweb="notification"] { border-radius: 14px !important; }
+hr { border-color: rgba(176,120,72,0.15) !important; }
